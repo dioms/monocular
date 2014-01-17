@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :restrict_access, if: lambda { |controller|  controller.request.format.json? }
+  skip_before_action :verify_authenticity_token
+
+
 
   # GET /events
   # GET /events.json
