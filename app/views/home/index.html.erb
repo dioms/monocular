@@ -1,7 +1,7 @@
 <h1>EventAnalytics</h1>
 <% if current_user %>
 <%= (link_to "Logout", destroy_user_session_path, method: :delete) %> 
-<%= (link_to "Events", events_path, method: :delete) %> 
+<%= link_to "Events", events_path %> 
 <% end %>
 <% unless current_user %>
 <%= (link_to "Login", new_user_session_path) %> |
