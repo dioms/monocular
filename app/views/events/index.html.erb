@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Type</th>
+      <th>Category</th>
       <th>User</th>
       <th></th>
       <th></th>
@@ -16,7 +16,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
-        <td><%= event.type %></td>
+        <td><%= event.category %></td>
         <td><%= event.user_id %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
