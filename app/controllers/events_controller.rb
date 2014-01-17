@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.user_id = ApiKey.find_by_access_token(params[:access_token]).user_id
+    @event.user_id = ApiKey.find_by_access_token(params[:access_token]).user_id if params[:access_token]
 
     respond_to do |format|
       if @event.save
