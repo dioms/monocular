@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   after_create :create_api_key
   has_many :events
+  has_many :customers
+  has_many :customer_sets
   has_one :api_key
 
   # Include default devise modules. Others available are:

@@ -1,14 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :restrict_access, if: lambda { |controller|  controller.request.format.json? }
+  before_filter :authenticate_user!
   skip_before_action :verify_authenticity_token
-
-
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = current_user.events 
   end
 
   # GET /events/1
@@ -29,7 +28,8 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.user_id = ApiKey.find_by_access_token(params[:access_token]).user_id if params[:access_token]
+    @event.user_id = current_user.id
+    @event.user_id ||= ApiKey.find_by_access_token(params[:access_token]).user_id if params[:access_token]
 
     respond_to do |format|
       if @event.save
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :type, :user_id)
+      params.require(:event).permit(:name, :type, :user_id, :category)
     end
 
     def restrict_access

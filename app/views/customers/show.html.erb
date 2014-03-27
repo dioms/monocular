@@ -1,0 +1,18 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1><%= @customer.email %></h1>
+<hr>
+
+<p>
+  <h2>Actions:</h2>
+  <div class="well">
+  <% @customer.custom_data.each do |k,v| %>
+    <h4><%= "#{k} : #{v}" %><h4>
+  <% end %>
+</div>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>
+</div>

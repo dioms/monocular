@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116180121) do
+ActiveRecord::Schema.define(version: 20140327120721) do
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -20,12 +20,34 @@ ActiveRecord::Schema.define(version: 20140116180121) do
     t.datetime "updated_at"
   end
 
+  create_table "customer_sets", force: true do |t|
+    t.string   "name"
+    t.string   "rule"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "field"
+    t.string   "comparison"
+    t.integer  "value"
+    t.integer  "user_id"
+  end
+
+  create_table "customers", force: true do |t|
+    t.text     "custom_data"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "id_on_app"
+    t.string   "email"
+    t.integer  "set_id"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.string   "category"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
   end
 
   create_table "users", force: true do |t|

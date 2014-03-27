@@ -14,8 +14,22 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+    <div class="row">
+      <!-- SIDEBAR Open -->
+      <div id="sidebar-left" class="col-lg-2">
+        <ul class="nav nav-tabs nav-stacked sidemenus">
+            <h4>Customer Sets </h4>
+          <% current_user.customer_sets.each do |set| %>
+            <li>
+            <%= link_to set.name, set, class: "" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+<div id="content-right" class="col-lg-10 container">
        <%= render 'layouts/messages' %>
        <%= yield %>
+</div>
     </main>
   </body>
 </html>

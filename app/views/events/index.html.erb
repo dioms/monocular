@@ -1,11 +1,12 @@
+<div class="container">
 <h1>Listing events</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Name</th>
+      <th><b>Name</b></th>
       <th>Category</th>
-      <th>User</th>
+      <th>Customer</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,7 +18,7 @@
       <tr>
         <td><%= event.name %></td>
         <td><%= event.category %></td>
-        <td><%= event.user_id %></td>
+        <td><%= event.customer_id %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,3 +30,4 @@
 <br>
 
 <%= link_to 'New Event', new_event_path %>
+</div>

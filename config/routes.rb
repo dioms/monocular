@@ -1,4 +1,9 @@
 EventAnalytics::Application.routes.draw do
+  resources :customer_sets
+
+  get "sets/index"
+  resources :customers
+
   resources :events
 
   devise_for :users

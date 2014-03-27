@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer_set.name %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @customer_set.rule %>
+</p>
+
+<%= debug @customers %>
+
+<%= link_to 'Edit', edit_customer_set_path(@customer_set) %> |
+<%= link_to 'Back', customer_sets_path %>

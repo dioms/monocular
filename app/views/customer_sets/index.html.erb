@@ -1,0 +1,31 @@
+<div class="container">
+<h1>Listing customer_sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><h2>Name</h2></th>
+      <th><h2>Rule</h2></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_sets.each do |customer_set| %>
+      <tr>
+        <td><h4 style="margin-right: 20px"><%= customer_set.name %></h4></td>
+        <td><h4 style="margin-right: 20px"><%= customer_set.rule %></h4></td>
+        <td><%= link_to 'Show', customer_set %></td>
+        <td><%= link_to 'Edit', edit_customer_set_path(customer_set) %></td>
+        <td><%= link_to 'Destroy', customer_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer set', new_customer_set_path %>
+</div>

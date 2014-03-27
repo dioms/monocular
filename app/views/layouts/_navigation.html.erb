@@ -1,0 +1,13 @@
+<%# navigation styled for Bootstrap 3.0 %>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'Event Analytics', root_path, class: 'navbar-brand' %>
+    </div>
+    <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <span class="col-lg-8"> <h1>Listing customers</h1> </span>
+    <span class="col-lg-4 filter">
+      <h5>Filter: </h5>
+        <%= form_tag('/customers', method: 'get') do %>
+          <%= select_tag 'filter', options_for_select(current_user.customers.to_a.each.map { |c| c.custom_data.keys }.flatten.uniq.unshift("All")) %>
+          <%= submit_tag "Filter" %>
+        <% end %>
+      </span>
+  </div>
+  <br />
+
+  <div class="row">
+    <div class="well">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>Email</th>
+            <th>Custom Data</th>
+            <th>Set</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= image_tag "avatar.png", size: "75x75", class: "avatar" %>
+                <td><h4><%= customer.email %></h4></td>
+                <td><h4><% customer.custom_data.each do |k,v| %>
+                      <%= "#{k} : #{v}" %> <br />
+                    <% end %>
+                </h4></td>
+                <td><h4>Small</h4></td>
+                <td><%= link_to 'Show', customer %></td>
+                <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+                <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br>
+
+    <%= link_to 'New Customer', new_customer_path %>
