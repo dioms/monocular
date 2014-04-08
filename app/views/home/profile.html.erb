@@ -2,4 +2,27 @@
 <div class="container well">
   <h3>Email: <small><%= @user.email %></small> </h3>
   <h3>API Key: <small><%= @user.api_key.access_token %></small> </h3>
+  <h3>Number of Customers: <small><%= @user.customers.count %></small> </h3>
+  <h3>Javascript Drop in: </h3>
+  
+    <pre> 
+      var URL = "YOUR HOST HERE"
+      var TOKEN = "<%= @user.api_key.access_token %>"
+
+      window.submit_event = function(name, category, customer_id) {
+      var data = {customer: {custom_data: {
+      testing: "test",
+      tester: "hehehe"
+      },
+      email: "dortizmo@lols.du" }};
+
+      $.ajax({
+      url: URL + "?access_token=" + TOKEN,
+      data: data,
+      type: 'PUT'
+      });
+      }
+      </pre>
+  
+  
 </div>
