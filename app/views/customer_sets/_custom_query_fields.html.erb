@@ -1,0 +1,15 @@
+<div class="nested-fields well">
+  <div class="field form-group">
+    <%= f.label :field %>
+    <%= f.select :field, options_for_select(current_user.customers.to_a.each.map { |c| c.custom_data.keys }.flatten.uniq) %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :comparison %>
+    <%= f.select :comparison, options_for_select(["<", ">"]) %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+  <%= link_to_remove_association "remove custom query", f %>
+</div>

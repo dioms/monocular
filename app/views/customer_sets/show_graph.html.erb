@@ -1,0 +1,6 @@
+<h1>Graph</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<h3> Line Chart </h3>
+
+<%= line_chart(@customers.map { |cust| {name: cust.email, data: cust.custom_data } }, discrete: true)%>

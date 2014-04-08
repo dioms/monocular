@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327120721) do
+ActiveRecord::Schema.define(version: 20140408025648) do
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "custom_queries", force: true do |t|
+    t.string   "field"
+    t.string   "comparison"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "customer_set_id"
   end
 
   create_table "customer_sets", force: true do |t|

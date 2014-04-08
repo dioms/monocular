@@ -16,6 +16,12 @@ main {
   padding-top: 40px;
 }
 
+form input[type=text],
+form input[type=submit]
+{
+  color: black;
+}
+
 .fullscreen_bg {
   position: fixed;
   top: 0;

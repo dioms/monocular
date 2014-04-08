@@ -1,8 +1,8 @@
-<%= form_for(@customer_set) do |f| %>
+<%= form_for(@customer_set, html: {class: "form-inline" }) do |f| %>
+
   <% if @customer_set.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@customer_set.errors.count, "error") %> prohibited this customer_set from being saved:</h2>
-
       <ul>
       <% @customer_set.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,24 +10,22 @@
       </ul>
     </div>
   <% end %>
+
   <%= f.label :name %><br>
-  <div class="field" style="color:black">
+  <div class="field">
     <%= f.text_field :name %>
   </div>
-  <%= f.label :field %><br>
-  <div class="field" style="color:black">
-    <%= f.select :field, options_for_select(current_user.customers.to_a.each.map { |c| c.custom_data.keys }.flatten.uniq) %>
+
+  <h3>Queries</h3>
+  <div id="custom_queries">
+    <%= f.fields_for :custom_queries do |custom_query| %>
+      <%= render 'custom_query_fields', :f => custom_query %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add Query', f, :custom_queries %>
+    </div>
   </div>
-  <%= f.label :comparison %><br>
-  <div class="field" style="color:black">
-    <%= f.select :comparison, options_for_select(["<", ">"]) %>
-  </div>
-  <%= f.label :value %><br>
-  <div class="field" style="color:black">
-    <%= f.text_field :value %>
-  </div>
-  <br />
-  <div class="actions" style="color:black">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

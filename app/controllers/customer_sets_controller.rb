@@ -11,12 +11,13 @@ class CustomerSetsController < ApplicationController
   # GET /customer_sets/1
   # GET /customer_sets/1.json
   def show
-    customer_set = CustomerSet.find(params[:id])
-    if customer_set.comparison == ">"
-      @customers = current_user.customers.select { |c| not c.custom_data[customer_set.field].nil? }.select { |c| c.custom_data[customer_set.field] > customer_set.value }
-    else
-      @customers = current_user.customers.select { |c| not c.custom_data[customer_set.field].nil? }.select { |c| c.custom_data[customer_set.field] < customer_set.value }
-    end
+    @customer_set = CustomerSet.find(params[:id])
+    @customers = @customer_set.get_customers(current_user)
+  end
+
+  def show_graph
+    @customer_set = CustomerSet.find(params[:id])
+    @customers = @customer_set.get_customers(current_user)
   end
 
   # GET /customer_sets/new
@@ -76,6 +77,6 @@ class CustomerSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_set_params
-      params.require(:customer_set).permit(:name, :rule, :value, :comparison, :field)
+      params.require(:customer_set).permit(:name, :rule, :value, :comparison, :field, custom_queries_attributes: [:id, :field, :comparison, :value, :_destroy] )
     end
 end

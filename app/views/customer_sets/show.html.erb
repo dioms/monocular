@@ -1,16 +1,41 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @customer_set.name %>
+  <strong>Number of users:</strong>
+  <%= @customers.count %>
 </p>
 
-<p>
-  <strong>Rule:</strong>
-  <%= @customer_set.rule %>
+<p class="well">
+  <strong>Queries:</strong><br />
+  <% @customer_set.custom_queries.sort_by! { |c| c.field } %>
+  <% @customer_set.custom_queries.each do |c_q| %>
+    <%= "#{c_q.field} #{c_q.comparison} #{c_q.value}" %>
+    <br />
+  <% end %>
 </p>
 
-<%= debug @customers %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>email</th>
+          <% @customers.first.custom_data.keys.each do |key| %>
+            <th> <%= key if @customer_set.custom_queries.map { |c| c.field }.include? key %> </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |cust| %>
+          <tr>
+            <td><%= link_to cust.email, customer_path(cust) %></td>
+            <% cust.custom_data.sort_by { |k,v| k } %>
+            <% cust.custom_data.keys.each do |key| %>
+              <td> <%= cust.custom_data[key] if @customer_set.custom_queries.map { |c| c.field }.include? key %> </td>
+            <% end %>
+          <% end %>
+          </tr>
+      </tbody>
+    </table>
 
 <%= link_to 'Edit', edit_customer_set_path(@customer_set) %> |
 <%= link_to 'Back', customer_sets_path %>
