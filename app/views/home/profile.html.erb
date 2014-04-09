@@ -6,7 +6,7 @@
   <h3>Javascript Drop in: </h3>
   
     <pre> 
-      var URL = "monocular.herokuapp.com/customers/"
+      var URL = "http://monocular.herokuapp.com/customers/"
       var TOKEN = "<%= @user.api_key.access_token %>"
 
       window.submit_event = function(name, category, customer_id) {
@@ -22,7 +22,7 @@
       $.ajax({
       url: URL + "?access_token=" + TOKEN,
       data: data,
-      type: 'PUT'
+      type: 'POST'
       });
       }
       </pre>

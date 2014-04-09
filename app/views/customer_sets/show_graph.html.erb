@@ -3,8 +3,6 @@
 
 <h3> Line Chart </h3>
 
-<%= line_chart(@customers.map { |cust| {name: cust.email, data: cust.custom_data } }, discrete: true)%>
-
 <%= line_chart @customers.sort_by { |c| c.created_at }.inject(Hash.new(0)) { |k,v| k[v.created_at.strftime("%b, %Y")] += 1; k } %>
 
 <% @hi = @customers.inject(Hash.new(0)) do |h, v|  %>
