@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def is_active?
+      created_at > 30.days.ago
+  end
+
   private
 
   def create_api_key

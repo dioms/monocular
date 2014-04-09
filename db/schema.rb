@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409052308) do
+ActiveRecord::Schema.define(version: 20140409055412) do
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140409052308) do
     t.integer  "id_on_app"
     t.string   "email"
     t.integer  "set_id"
+    t.date     "has_paid"
   end
 
   create_table "events", force: true do |t|
