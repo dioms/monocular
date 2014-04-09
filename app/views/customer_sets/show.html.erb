@@ -15,6 +15,8 @@
   <% end %>
 </p>
 
+
+<% if not @customers.empty? %>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -36,6 +38,9 @@
           </tr>
       </tbody>
     </table>
+  <% else %>
+    <h3> No Users in this Customer Set </h3>
+  <% end %>
 
 <%= link_to 'Edit', edit_customer_set_path(@customer_set) %> |
 <%= link_to 'Back', customer_sets_path %>

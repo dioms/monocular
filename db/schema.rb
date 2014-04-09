@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408025648) do
+ActiveRecord::Schema.define(version: 20140409052308) do
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140408025648) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "has_paid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
