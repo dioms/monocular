@@ -19,7 +19,6 @@
             <th>Picture</th>
             <th>Email</th>
             <th>Custom Data</th>
-            <th>Set</th>
             <th></th>
             <th></th>
             <th></th>
@@ -35,7 +34,6 @@
                       <%= "#{k} : #{v}" %> <br />
                     <% end %>
                 </h4></td>
-                <td><h4>Small</h4></td>
                 <td><%= link_to 'Show', customer %></td>
                 <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
                 <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
