@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Name:</strong>
-  <%= @customer_set.name %>
+<h1> <%= @customer_set.name.capitalize %> <small> <%= link_to "View Graph", customer_set_graph_path(@customer_set.id) %> </small> </h1>
   <strong>Number of users:</strong>
   <%= @customers.count %>
+  <br />
+  <strong>Number of paid users:</strong>
+  <%= @customers.select { |c| c.is_active? }.count %>
+  <br />
+  <strong>Ratio active/inactive:</strong>
+  <%= @customers.count / @customers.select { |c| c.is_active? }.count %>
 </p>
 
 <p class="well">
