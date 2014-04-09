@@ -8,8 +8,10 @@ EventAnalytics::Application.routes.draw do
 
   devise_for :users
   get "home/index"
-  get 'users/:id' => 'home#profile'
+  get 'users/:id' => 'home#profile', as: :user
   get 'show_graph/:id' => 'customer_sets#show_graph', as: :customer_set_graph
+  get 'active_graph' => 'customer_sets#active_graph'
+  get 'active_set/' => 'customer_sets#active_set'
   root "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

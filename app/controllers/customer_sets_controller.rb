@@ -15,6 +15,14 @@ class CustomerSetsController < ApplicationController
     @customers = @customer_set.get_customers(current_user)
   end
 
+  def active_set
+    @customers = current_user.customers.select { |c| c.is_active? }
+  end
+
+  def active_graph
+    @customers = current_user.customers.select { |c| c.is_active? }
+  end
+
   def show_graph
     @customer_set = CustomerSet.find(params[:id])
     @customers = @customer_set.get_customers(current_user)

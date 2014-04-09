@@ -8,6 +8,7 @@ gem 'rails', '4.0.2'
 gem 'faker'
 gem 'cocoon'
 gem 'chartkick'
+gem 'groupdate'
 
 gem 'bootstrap-sass'
 

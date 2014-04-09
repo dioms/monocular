@@ -6,15 +6,18 @@
   <h3>Javascript Drop in: </h3>
   
     <pre> 
-      var URL = "YOUR HOST HERE"
+      var URL = "monocular.herokuapp.com/customers/"
       var TOKEN = "<%= @user.api_key.access_token %>"
 
       window.submit_event = function(name, category, customer_id) {
+      // sample data structure
       var data = {customer: {custom_data: {
-      testing: "test",
-      tester: "hehehe"
+      total_users: 50,
+      courses_created: 30,
+      courses_started: 200,
+      courses_completed: 80
       },
-      email: "dortizmo@lols.du" }};
+      email: "John.Doe@test.com" }};
 
       $.ajax({
       url: URL + "?access_token=" + TOKEN,

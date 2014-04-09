@@ -3,7 +3,7 @@ r = Random.new
 100.times do |x|
   c = Customer.new
   c.email = Faker::Internet.email
-  c.user_id = 4
+  c.user_id = 1
   users = r.rand(0..50)
 
   if users < 17
@@ -26,8 +26,8 @@ r = Random.new
   rand_date = rand(1.year.ago..Time.now)
   c.created_at = rand_date
 
-  random = r.rand(1..4)
-  if random == 2
+  random = r.rand(1..5)
+  if random < 3
     c.has_paid = rand(rand_date..Time.now)
   end
   c.save!

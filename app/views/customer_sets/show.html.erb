@@ -4,11 +4,12 @@
   <strong>Number of users:</strong>
   <%= @customers.count %>
   <br />
-  <strong>Number of paid users:</strong>
+  <strong>Number of active users:</strong>
   <%= @customers.select { |c| c.is_active? }.count %>
   <br />
-  <strong>Ratio active/inactive:</strong>
-  <%= @customers.count / @customers.select { |c| c.is_active? }.count %>
+  <strong>Number of paid users:</strong>
+  <%= @customers.select { |c| c.has_paid != nil }.count %>
+  <br />
 </p>
 
 <p class="well">

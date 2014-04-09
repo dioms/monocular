@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<p>
+<h1> Active Customers </h1>
+  <strong>Number of users:</strong>
+  <%= @customers.count %>
+  <br />
+  <strong>Number of active users:</strong>
+  <%= @customers.select { |c| c.is_active? }.count %>
+  <br />
+  <strong>Number of paid users:</strong>
+  <%= @customers.select { |c| c.has_paid? }.count %>
+  <br />
+</p>
+
+<% if not @customers.empty? %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>email</th>
+        <th>active?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |cust| %>
+          <tr>
+            <td><%= link_to cust.email, customer_path(cust) %></td>
+            <td> Yes </td>
+          <% end %>
+          </tr>
+      </tbody>
+    </table>
+  <% else %>
+    <h3> No Users in this Customer Set </h3>
+  <% end %>
+
+<%= link_to 'Back', customer_sets_path %>

@@ -19,6 +19,7 @@
       <div id="sidebar-left" class="col-lg-2">
         <ul class="nav nav-tabs nav-stacked sidemenus">
             <h4>Customer Sets </h4>
+            <li>  <%= link_to "Active Set", active_set_path, class: "" %> </li>
           <% current_user.customer_sets.each do |set| %>
             <li>
             <%= link_to set.name, set, class: "" %>

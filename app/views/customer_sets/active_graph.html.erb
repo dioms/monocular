@@ -1,9 +1,8 @@
-<h1>Graph <small> <%= link_to "View Data", customer_set_path(@customer_set) %> </small> </h1>
+<h1>Graph <small> <%= link_to "View Data", active_set_path %> </small> </h1>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <h3> Line Chart </h3>
 
-<%= line_chart(@customers.map { |cust| {name: cust.email, data: cust.custom_data } }, discrete: true)%>
 
 <%= line_chart @customers.sort_by { |c| c.created_at }.inject(Hash.new(0)) { |k,v| k[v.created_at.strftime("%b, %Y")] += 1; k } %>
 
@@ -17,10 +16,8 @@
 
 
 <% @hii = @customers.inject(Hash.new(0)) do |h, v|  %>
-  <% if v.has_paid? %>
+  <% if v.has_paid? or v.ever_paid? %>
     <% h["Currently Paid"] += 1 %>
-  <% elsif v.ever_paid? %>
-    <% h["Paid Sometime"] += 1 %>
   <% else %>
     <% h["Never paid"] += 1 %>
     <% end; h %>
@@ -28,3 +25,7 @@
 
   <%= column_chart @hi, discrete: true %>
   <%= column_chart @hii, discrete: true%>
+
+  <% @test = { "Free Trial" => 43, "Paid" => 7 } %>
+  <%= column_chart @test,  discrete: true %>
+
