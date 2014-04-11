@@ -16,18 +16,6 @@ class CustomerSetsController < ApplicationController
     @other_sets = @customer_set.get_all_but_existing
   end
 
-  def active_set
-    @customers = current_user.customers.select { |c| c.is_active? }
-  end
-
-  def active_graph
-    @customers = current_user.customers.select { |c| c.is_active? }
-  end
-
-  def show_graph
-    @customer_set = CustomerSet.find(params[:id])
-    @customers = @customer_set.get_customers(current_user)
-  end
 
   # GET /customer_sets/new
   def new
@@ -76,6 +64,19 @@ class CustomerSetsController < ApplicationController
       format.html { redirect_to customer_sets_url }
       format.json { head :no_content }
     end
+  end
+
+  def active_set
+    @customers = current_user.customers.select { |c| c.is_active? }
+  end
+
+  def active_graph
+    @customers = current_user.customers.select { |c| c.is_active? }
+  end
+
+  def show_graph
+    @customer_set = CustomerSet.find(params[:id])
+    @customers = @customer_set.get_customers(current_user)
   end
 
   private

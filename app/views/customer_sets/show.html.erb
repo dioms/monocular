@@ -20,8 +20,8 @@
   <br />
 <% end %>
 <strong>Date Range:</strong> <br />
-Start: <%= @customer_set.start.strftime("%a, %e %B %Y") %> <br />
-End: <%= @customer_set.end.strftime("%a, %e %B %Y") %>
+Start: <%= @customer_set.start.strftime("%a, %e %B %Y") if @customer_set.start %> <br />
+End: <%= @customer_set.end.strftime("%a, %e %B %Y") if @custmer_set.try(:end) %>
 <br />
 <div class="row well">
   <% @other_sets.each do |set, i| %>
