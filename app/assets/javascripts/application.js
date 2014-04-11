@@ -15,4 +15,19 @@
 //= require turbolinks
 //= require bootstrap
 //= require cocoon
+//= require bootstrap-datepicker/core
 //= require_tree .
+//
+//
+  
+  $(function() {
+    $('.show_content').hide();
+    $('.show_button').click(function() {
+      $(this).next().next().toggle();
+    });
+    $('.input-daterange').datepicker({
+      autoclose: true,
+      format: "yyyy-mm-dd"
+    });
+
+  });

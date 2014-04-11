@@ -9,8 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap-datepicker3
  *= require_tree .
  */
+
+span.input-group-addon {
+  color: black;
+}
 
 main {
   padding-top: 40px;

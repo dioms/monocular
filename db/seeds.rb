@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# Create Plans!
+  Plan.create(name: 'Free', cost: 0)
+  Plan.create(name: 'Small', cost: 30)
+  Plan.create(name: 'Medium', cost: 50)
+  Plan.create(name: 'Large', cost: 100)

@@ -13,6 +13,7 @@ class CustomerSetsController < ApplicationController
   def show
     @customer_set = CustomerSet.find(params[:id])
     @customers = @customer_set.get_customers(current_user)
+    @other_sets = @customer_set.get_all_but_existing
   end
 
   def active_set
@@ -85,6 +86,6 @@ class CustomerSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_set_params
-      params.require(:customer_set).permit(:name, :rule, :value, :comparison, :field, custom_queries_attributes: [:id, :field, :comparison, :value, :_destroy] )
+      params.require(:customer_set).permit(:name, :rule, :value, :comparison, :field, :start, :end, :date_comparison, custom_queries_attributes: [:id, :field, :comparison, :value, :_destroy] )
     end
 end

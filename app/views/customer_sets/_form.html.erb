@@ -11,9 +11,21 @@
     </div>
   <% end %>
 
-  <%= f.label :name %><br>
+  <h3>Name </h3>
   <div class="field">
     <%= f.text_field :name %>
+  </div>
+  <br />
+
+  <h3> Date Range </h3>
+  What to compare?
+  <%= f.select(:date_comparison, [['Created At', 'created_at'], ['Paid At', 'has_paid']]) %>
+  <br />
+  <br />
+  <div class="input-daterange input-group" id="datepicker">
+    <%= f.text_field :start, class: "input-sm form-control" %>
+    <span class="input-group-addon">to</span>
+    <%= f.text_field :end, class: "input-sm form-control" %>
   </div>
 
   <h3>Queries</h3>

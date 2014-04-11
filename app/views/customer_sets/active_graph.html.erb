@@ -23,9 +23,37 @@
     <% end; h %>
   <% end %>
 
-  <%= column_chart @hi, discrete: true %>
-  <%= column_chart @hii, discrete: true%>
+  <% @breakdown = @customers.reject { |c| c.custom_data["courses_started"] == 0 }.inject(Hash.new(0)) do |h, v| %>
+    <% ratio = (v.custom_data["courses_completed"].to_f / v.custom_data["courses_started"].to_f) %>
+    <% if ratio < 0.25 %>
+      <%  h["< 25%"] += 1 %>
+    <% elsif ratio < 0.50 %>
+      <%  h["> 25% | < 50%"] += 1 %>
+    <% elsif ratio < 0.75 %>
+      <%  h["> 50% | < 75%"] += 1 %>  
+    <% else %>
+      <% h["> 75%"] += 1 %>
+    <% end; h %>
+  <% end %>
 
-  <% @test = { "Free Trial" => 43, "Paid" => 7 } %>
-  <%= column_chart @test,  discrete: true %>
+
+  <% if false %>
+      <% hello = {} %>
+      <%  hello["Free"] = 1 %>
+      <%  hello["Started"] = 4 %>
+      <%  hello["Moderate"] = 10 %>  
+      <%  hello["Heavy"] = 6 %>
+    <% end %>
+
+  <h3> Active vs Inactive </h3>
+  <%= column_chart @hi, discrete: true %>
+  <h3> Paid vs Never Paid </h3>
+  <%= column_chart @hii, discrete: true%>
+  <h3> Active Accounts vs Course Completion Rate </h3>
+  <%= column_chart @breakdown, {discrete: true, library: {hAxis: {title: "Course Completion Rate"}, vAxis: {title: "# of Active Accounts" } } }%>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 

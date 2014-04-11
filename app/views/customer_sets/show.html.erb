@@ -13,12 +13,44 @@
 </p>
 
 <p class="well">
-  <strong>Queries:</strong><br />
-  <% @customer_set.custom_queries.sort_by! { |c| c.field } %>
-  <% @customer_set.custom_queries.each do |c_q| %>
-    <%= "#{c_q.field} #{c_q.comparison} #{c_q.value}" %>
+<strong>Queries:</strong><br />
+<% @customer_set.custom_queries.sort_by! { |c| c.field } %>
+<% @customer_set.custom_queries.each do |c_q| %>
+  <%= "#{c_q.field} #{c_q.comparison} #{c_q.value}" %>
+  <br />
+<% end %>
+<strong>Date Range:</strong> <br />
+Start: <%= @customer_set.start.strftime("%a, %e %B %Y") %> <br />
+End: <%= @customer_set.end.strftime("%a, %e %B %Y") %>
+<br />
+<div class="row well">
+  <% @other_sets.each do |set, i| %>
+    <div class="col-md-4">
+      <h3><%= set.name %></h3>
     <br />
-  <% end %>
+    <strong>Queries:</strong>
+    <% set.custom_queries.sort_by! { |c| c.field } %>
+    <% set.custom_queries.each do |c_q| %>
+      <br />
+      <%= "#{c_q.field} #{c_q.comparison} #{c_q.value}" %>
+    <% end %>
+    <br />
+    <strong>Stats</strong> <br />
+    Total Users: <%= set.get_customers(current_user).count %> <br />
+    Users that overlap: <%= @customer_set.get_overlap(set, current_user).count %>
+    <br />
+    <button class="show_button btn btn-warning">Show Customers</button>
+    <br />
+    <span class="show_content"> 
+      <% @customer_set.get_overlap(set, current_user).each do |customer| %>
+        <%= link_to customer.email, customer_path(customer) %> <br />
+      <% end %>
+    </span>
+    <br />
+  </div>
+  <% end  %>
+</div>
+
 </p>
 
 

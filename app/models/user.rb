@@ -4,16 +4,13 @@ class User < ActiveRecord::Base
   has_many :customers
   has_many :customer_sets
   has_one :api_key
+  belongs_to :plan
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  def is_active?
-      created_at > 30.days.ago
-  end
 
   private
 

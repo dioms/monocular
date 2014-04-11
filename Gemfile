@@ -9,6 +9,7 @@ gem 'faker'
 gem 'cocoon'
 gem 'chartkick'
 gem 'groupdate'
+gem 'bootstrap-datepicker-rails'
 
 gem 'bootstrap-sass'
 
