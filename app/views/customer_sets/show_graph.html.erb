@@ -30,3 +30,12 @@
 
   <h3> Never Paid vs Paid Sometime vs Currently Paying </h3>
   <%= column_chart @hii, discrete: true%>
+
+  <h3> Customer Mix </h3>
+  <% @superhash = {} %>
+  <% @other_sets.each do |set| %>
+    <% key = @customer_set.name + " + " + set.name %>
+    <% overlap = @customer_set.get_overlap(set, current_user) %>
+    <% @superhash[key] = (overlap.select { |c| c.is_active? }.count.to_f / overlap.count.to_f).round(2) * 100 %>
+  <% end %>
+  <%= column_chart @superhash, discrete: true, library: { backgroundColor: 'white',hAxis: {title: "Course Set Mix"}, vAxis: {title: "% of Active Users" } } %>

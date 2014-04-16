@@ -22,6 +22,10 @@ class CustomerSet < ActiveRecord::Base
     CustomerSet.all.reject { |c| c.id == id }
   end
 
+  def get_active(user)
+    self.get_customers(user).select { |c| c.is_active? }  
+  end
+
   def get_overlap(cust_set, user)
     self.get_customers(user) & cust_set.get_customers(user)
   end

@@ -68,15 +68,18 @@ class CustomerSetsController < ApplicationController
 
   def active_set
     @customers = current_user.customers.select { |c| c.is_active? }
+    @all_sets = CustomerSet.all
   end
 
   def active_graph
     @customers = current_user.customers.select { |c| c.is_active? }
+    @all_sets = CustomerSet.all
   end
 
   def show_graph
     @customer_set = CustomerSet.find(params[:id])
     @customers = @customer_set.get_customers(current_user)
+    @other_sets = @customer_set.get_all_but_existing
   end
 
   private

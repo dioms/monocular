@@ -1,3 +1,4 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <p id="notice"><%= notice %></p>
 <p>
 <h1> Active Customers <small><%= link_to 'Graph View', 'active_graph' %> </small></h1>
@@ -11,6 +12,14 @@
   <%= @customers.select { |c| c.has_paid? }.count %>
   <br />
 </p>
+
+<% @superhash = {} %>
+<% @all_sets.each do |set| %>
+  <% @superhash[set.name] = (set.get_active(current_user).count.round(2) / set.get_customers(current_user).count.round(2)).round(2) * 100 %>
+<% end %>
+
+<h3> % of Active Users per Customer Set </h3>
+<%= column_chart @superhash, discrete: true, library: { backgroundColor: 'white',hAxis: {title: "Course Set Name"}, vAxis: {title: "% of Active Users" } } %>
 
 <% if not @customers.empty? %>
   <table class="table table-hover">
