@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <br />
 <div class="container well">
   <h3>Email: <small><%= @user.email %></small> </h3>
@@ -6,18 +9,26 @@
   <h3>Javascript Drop in: </h3>
   
     <pre> 
+    <code>
       var URL = "http://monocular.herokuapp.com/customers/"
       var TOKEN = "<%= @user.api_key.access_token %>"
 
-      window.submit_event = function(name, category, customer_id) {
-      // sample data structure
+      window.submit_event = function(custom_data, email) {
       var data = {customer: {custom_data: {
-      total_users: 50,
-      courses_created: 30,
-      courses_started: 200,
-      courses_completed: 80
+        custom_data
       },
-      email: "John.Doe@test.com" }};
+      email: email }};
+
+
+      /* Example submit event, this will run on the client website
+      var data = { total_users: 50,
+                   courses_created: 30,
+                   courses_started: 200,
+                   courses_completed: 80 }
+      var email = "test@test.com"
+      submit_event(data, email)
+
+      */
 
       $.ajax({
       url: URL + "?access_token=" + TOKEN,
@@ -25,7 +36,8 @@
       type: 'POST'
       });
       }
-      </pre>
+    </code>
+    </pre>
   
   
 </div>
