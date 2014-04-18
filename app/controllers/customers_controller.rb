@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
     else
       @customers = current_user.customers
     end
+    @customer_sets = CustomerSet.all
   end
 
   # GET /customers/1

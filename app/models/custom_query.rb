@@ -4,4 +4,8 @@ class CustomQuery < ActiveRecord::Base
   def query 
     "#{field} #{comparison} ?" 
   end
+
+  def condition 
+    "#{field} #{comparison} #{value}"
+  end
 end

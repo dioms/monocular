@@ -19,6 +19,7 @@
             <th>Picture</th>
             <th>Email</th>
             <th>Custom Data</th>
+            <th>Sets</th>
             <th></th>
             <th></th>
             <th></th>
@@ -34,6 +35,13 @@
                       <%= "#{k} : #{v}" %> <br />
                     <% end %>
                 </h4></td>
+                <td> <% @customer_sets.select { |cs| cs.get_customers(current_user).include? customer }.each do |cust_set| %> 
+                    <%= link_to cust_set.name, customer_set_path(cust_set) %>
+                    <br />  
+                  <% end %>
+                </td>
+
+                </td>
                 <td><%= link_to 'Show', customer %></td>
                 <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
                 <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

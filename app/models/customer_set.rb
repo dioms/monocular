@@ -29,4 +29,5 @@ class CustomerSet < ActiveRecord::Base
   def get_overlap(cust_set, user)
     self.get_customers(user) & cust_set.get_customers(user)
   end
+
 end

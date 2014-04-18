@@ -32,7 +32,7 @@ End: <%= @customer_set.end.strftime("%a, %e %B %Y") if @custmer_set.try(:end) %>
     <% set.custom_queries.sort_by! { |c| c.field } %>
     <% set.custom_queries.each do |c_q| %>
       <br />
-      <%= "#{c_q.field} #{c_q.comparison} #{c_q.value}" %>
+      <%= c_q.condition %>
     <% end %>
     <br />
     <strong>Stats</strong> <br />

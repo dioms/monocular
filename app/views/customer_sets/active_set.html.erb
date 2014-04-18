@@ -18,8 +18,8 @@
   <% @superhash[set.name] = (set.get_active(current_user).count.round(2) / set.get_customers(current_user).count.round(2)).round(2) * 100 %>
 <% end %>
 
-<h3> % of Active Users per Customer Set </h3>
-<%= column_chart @superhash, discrete: true, library: { backgroundColor: 'white',hAxis: {title: "Course Set Name"}, vAxis: {title: "% of Active Users" } } %>
+<h3> Descriptors of Active Users Members </h3>
+<%= column_chart @superhash, discrete: true, library: { backgroundColor: 'white',hAxis: {title: "Course Set Name"}, vAxis: {title: "% of Active Users meeting [condition]" } } %>
 
 <% if not @customers.empty? %>
   <table class="table table-hover">
